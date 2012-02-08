@@ -19,7 +19,8 @@
     }],
     "permissions": [
         "tabs",
-        "http://reader/*"
+        "http://reader/*",
+        "http://127.0.0.1/*"
     ],
     "browser_action": {
         "default_icon": "img/icon16.png",
