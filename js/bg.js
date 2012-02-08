@@ -45,12 +45,6 @@ $(document).ready(function() {
     chrome.browserAction.setBadgeText({text:"?"});
     do_login();
 
-    var subscribe = function(tab_id, url, html) {
-        $.post(subscribe_url, { 'csrfmiddlewaretoken': csrf, 'url': url, 'html': html},
-            function(data) {
-                update_reading_count(data);
-            });
-    };
     var go_reading = function() {
         chrome.tabs.getAllInWindow(undefined, function(tabs) {
             for (var i = 0, tab; tab = tabs[i]; i++) {
@@ -62,14 +56,25 @@ $(document).ready(function() {
             chrome.tabs.create({url: reading_url});
         });
     };
-
     chrome.browserAction.onClicked.addListener(function(tab) {
         console.log('click on tab: ' + tab.id);
         go_reading();
-        //chrome.tabs.sendRequest(tab.id, {}, function(response) {
-            //var html = response.html;
-            //subscribe(tab.id, tab.url, html);
-        //});
+    });
+
+
+    var subscribe = function(url, html) {
+        $.post(subscribe_url, { 'csrfmiddlewaretoken': csrf, 'url': url, 'html': html},
+            function(data) {
+                update_reading_count(data);
+            });
+    };
+    chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+        chrome.tabs.getCurrent(function(tab) {
+            var html = request.html;
+            var url = request.url;
+            subscribe(url, html);
+            console.log('jobs done~');
+        });
     });
 }); 
 
