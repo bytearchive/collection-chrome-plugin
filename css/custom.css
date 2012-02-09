@@ -161,9 +161,9 @@
     margin-left: 5px;
     margin-bottom: 0;
 }
-a.btn {
+.modal a.btn {
     text-decoration: none;
-
+    color: #333333 !important;
 }
 
 .form-horizontal .control-group:first-child {
@@ -185,9 +185,9 @@ a.btn {
     content: "";
 }
 
-.form-horizontal .control-group > label {
+.modal .form-horizontal .control-group > label {
     float: left;
-    width: 40px;
+    width: 40px !important;
     padding-top: 5px;
     text-align: right;
     display: block;
@@ -198,8 +198,8 @@ a.btn {
     line-height: 18px;
 }
 
-.form-horizontal .controls {
-    margin-left: 60px;
+.modal .form-horizontal .controls {
+    margin-left: 60px !important;
 }
 .modal input {
     display: inline-block;
@@ -330,8 +330,8 @@ a.btn {
 .tag-list * {
     font-size: 13px;
 }
-.tag-list {
-    margin-left: 0px;
+.modal .tag-list {
+    margin-left: 0px !important;
     margin-top: 10px;
 }
 .tag-list .tag .arrow {

@@ -42,7 +42,7 @@ $(document).ready(function() {
                             '<label class="control-label" for="optionsCheckbox">Tags</label>' +
                             '<div class="controls">' +
                                 '<div class="input-append">' +
-                                    '<input class="span4" id="tag-input" size="16" type="text">' +
+                                    '<input id="tag-input" size="16" type="text">' +
                                     '<span class="add-on"><i class="icon-tags"></i></span>' +
                                 '</div>' +
                                 '<div class="tag-list"></div>' +
