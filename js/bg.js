@@ -62,8 +62,8 @@ $(document).ready(function() {
     });
 
 
-    var subscribe = function(url, html) {
-        $.post(subscribe_url, { 'csrfmiddlewaretoken': csrf, 'url': url, 'html': html},
+    var subscribe = function(url, html, tags) {
+        $.post(subscribe_url, { 'csrfmiddlewaretoken': csrf, 'url': url, 'html': html, 'tags': JSON.stringify(tags)},
             function(data) {
                 update_reading_count(data);
             });
@@ -72,7 +72,8 @@ $(document).ready(function() {
         chrome.tabs.getCurrent(function(tab) {
             var html = request.html;
             var url = request.url;
-            subscribe(url, html);
+            var tags = request.tags;
+            subscribe(url, html, tags);
             console.log('jobs done~');
         });
     });

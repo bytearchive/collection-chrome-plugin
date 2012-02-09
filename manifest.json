@@ -13,7 +13,13 @@
             "http://*/*",
             "https://*/*"
         ],
-        "js" : ["js/jquery.js", "js/jquery.hotkeys.js", "js/contentscript.js"],
+        "js" : [
+            "js/jquery.js",
+            "js/jquery.hotkeys.js", 
+            "js/contentscript.js", 
+            "js/bootstrap.min.js"
+        ],
+        "css": ["css/tag.css", "css/custom.css"],
         "run_at" : "document_end",
         "all_frames" : false
     }],
