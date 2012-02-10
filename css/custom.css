@@ -309,7 +309,7 @@
     border-radius: 0 3px 3px 0;
 }
 
-.icon-tags {
+.modal .icon-tags {
     background-position: -25px -48px;
     margin-top: 1px;
 }
@@ -327,23 +327,23 @@
     margin-bottom: 0;
 }
 
-.tag-list * {
+..modal tag-list * {
     font-size: 13px;
 }
 .modal .tag-list {
     margin-left: 0px !important;
     margin-top: 10px;
 }
-.tag-list .tag .arrow {
+.modal .tag-list .tag .arrow {
     background-position:-30px 0 !important;
 }
-.tag-list .tag:hover .arrow {
+.modal .tag-list .tag:hover .arrow {
     background-position:-60px 0 !important;
 }
-.tag-list .tag:hover .arrow:hover {
+.modal .tag-list .tag:hover .arrow:hover {
     background-position:-60px 0 !important;
 }
-.tag-list .tag {
+.modal .tag-list .tag {
     margin: 0 5px 5px 17px;
 }
 

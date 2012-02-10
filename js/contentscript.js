@@ -2,10 +2,15 @@ $(document).ready(function() {
     function remove_unseen_elem($html) {
         $html.find('body :hidden').detach();
     }
+    var remove_modal = function($html) {
+        $html.find('.modal-backdrop').detach();
+        $html.find('.modal').detach();
+    };
     var subscribe_request = function(tags) {
         console.log('subscribing article..');
         var $html = $('html');
         remove_unseen_elem($html);
+        remove_modal($html);
         chrome.extension.sendRequest({"html": $html.html(), "url": document.URL, "tags": tags}, 
             function(response) {
                 console.log(response);
