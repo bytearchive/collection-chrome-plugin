@@ -312,8 +312,6 @@
 .modal .icon-tags {
     background-position: -25px -48px;
     margin-top: 1px;
-}
-[class^="icon-"] {
     display: inline-block;
     width: 14px;
     height: 14px;
@@ -327,7 +325,7 @@
     margin-bottom: 0;
 }
 
-..modal tag-list * {
+.modal tag-list * {
     font-size: 13px;
 }
 .modal .tag-list {

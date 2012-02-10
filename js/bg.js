@@ -1,6 +1,6 @@
 $(document).ready(function() { 
     console.log('cat is ready.');
-    var debug = false;
+    var debug = true;
     var url_base = debug ? "http://127.0.0.1:8000/" : "http://reader/";
     var reading_url = url_base + "articles/";
     var login_url = url_base + "account/login/";

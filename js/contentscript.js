@@ -28,8 +28,8 @@ $(document).ready(function() {
     };
 
     var add_tag = function(name) {
-        // TODO: escape name before construct tag
-        var item = $('<div class="tag"> <div class="arrow"></div> <div class="co"> <span class="name">' + name + '</span> </div> </div>');
+        var item = $('<div class="tag"> <div class="arrow"></div> <div class="co"> <span class="name"></span> </div> </div>');
+        item.find('span').text(name);
         $('#modal .tag-list').append(item);
         item.click(function() {
             remove_tag(item);
