@@ -1,7 +1,8 @@
 $(document).ready(function() { 
-    function remove_unseen_elem($html) {
-        $html.find('body :hidden').detach();
-    }
+    //function remove_unseen_elem($html) {
+        //console.log($html.find('body :hidden'));
+        //$html.find('body :hidden').detach();
+    //}
     var remove_modal = function($html) {
         $html.find('.modal-backdrop').detach();
         $html.find('.modal').detach();
@@ -9,8 +10,9 @@ $(document).ready(function() {
     var subscribe_request = function(tags) {
         console.log('subscribing article..');
         var $html = $('html');
-        remove_unseen_elem($html);
+        //remove_unseen_elem($html);
         remove_modal($html);
+        //console.log($html.html());
         chrome.extension.sendRequest({"html": $html.html(), "url": document.URL, "tags": tags}, 
             function(response) {
                 console.log(response);
@@ -64,9 +66,6 @@ $(document).ready(function() {
     });
     $('#modal').on('shown', function () {
         $('#tag-input').focus();
-    });
-    $('#modal').on('hidden', function () {
-        $('input:first').focus();
     });
 
     $("#modal .tag-list .tag").click(function() {

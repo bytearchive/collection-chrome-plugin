@@ -112,7 +112,7 @@
     display: table;
     content: "";
 }
-.btn {
+.modal .btn {
     display: inline-block;
     padding: 4px 10px 4px;
     font-size: 13px;
@@ -140,7 +140,7 @@
     cursor: pointer;
     border-image: initial;
 }
-.btn:hover {
+.modal .btn:hover {
   color: #333333;
   text-decoration: none;
   background-color: #e6e6e6;
@@ -151,7 +151,7 @@
   -o-transition: background-position 0.1s linear;
   transition: background-position 0.1s linear;
 }
-.btn:focus {
+.modal .btn:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
@@ -204,8 +204,8 @@
 .modal input {
     display: inline-block;
     width: 410px;
-    height: 18px;
-    padding: 4px;
+    height: 18px !important;
+    padding: 4px !important;
     margin-bottom: 9px;
     font-size: 13px;
     line-height: 18px;
