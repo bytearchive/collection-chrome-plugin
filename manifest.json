@@ -1,7 +1,7 @@
 {
-    "name": "Reader Sub",
-    "version": "0.1",
-    "description": "Reader Plugin for subscribe articles.",
+    "name": "Collection Chrome Plugin",
+    "version": "0.1.1",
+    "description": "a plugin for saving article, and read it later.",
     "background_page": "background.html",
     "icons": { 
         "16": "img/icon16.png",

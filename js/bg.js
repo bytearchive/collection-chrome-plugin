@@ -1,38 +1,32 @@
+var url_base, username, password;
 var is_logined = false;
-
-var url_base;
-var reading_url;
-var login_url;
-var subscribe_url;
-var unread_url;
-
-var username, password;
 var csrf = "";
 
 var update_setting = function() {
-    var url_base = localStorage['#server_url'];
-    reading_url = url_base + "/articles/";
-    login_url = url_base + "/account/login/";
-    subscribe_url = url_base + "/ajax/article/subscribe/"; 
-    unread_url = url_base + "/ajax/article/reading-count/"; 
-
+    url_base = localStorage['#server_url'];
     username = localStorage['#username'];
     password = localStorage['#password'];
 };
 
 var get_unread_count = function() { 
-    $.get(unread_url,
-            function(data) {
-                var count = JSON.parse(data).reading_count;
-                chrome.browserAction.setBadgeText({text:String(count)});
-            }
-         );
+    unread_url = url_base + "/ajax/article/reading-count/"; 
+    $.get(unread_url, function(data) {
+        var count = JSON.parse(data).reading_count;
+        chrome.browserAction.setBadgeText({text:String(count)});
+    });
 };
 
+var update_reading_count = function(data) {
+    chrome.browserAction.setBadgeText({text:".."});
+    is_logined = true;
+    get_unread_count();
+    setInterval(get_unread_count, 1000 * 60 * 5);
+};
 var do_login = function() {
     chrome.browserAction.setBadgeText({text:"?"});
     update_setting();
     is_logined = false;
+    var login_url = url_base + "/account/login/";
     $.get(login_url,
             function(html) {
                 var doc = $(html);
@@ -41,16 +35,12 @@ var do_login = function() {
                     "csrfmiddlewaretoken": csrf,
                     "username": username,
                     "password": password,
-                    "is_remember": "on"
+                    "remember": "on"
                 },
                 function(data) {
                     console.log('login success');
-                    chrome.browserAction.setBadgeText({text:".."});
-                    is_logined = true;
-                    get_unread_count();
-                    setInterval(get_unread_count, 1000 * 60 * 5);
-                }
-                );
+                    update_reading_count(data);
+                });
             }
          );
 };
@@ -63,10 +53,12 @@ var go_reading = function() {
                 return;
             }
         }
+        var reading_url =  url_base + "/account/login/";
         chrome.tabs.create({url: reading_url});
     });
 };
 var subscribe = function(url, html, tags) {
+    var subscribe_url = url_base + "/ajax/article/subscribe/"; 
     $.post(subscribe_url, { 'csrfmiddlewaretoken': csrf, 'url': url, 'html': html, 'tags': JSON.stringify(tags)},
             function(data) {
                 update_reading_count(data);
@@ -75,8 +67,6 @@ var subscribe = function(url, html, tags) {
 
 $(document).ready(function() { 
     do_login();
-    console.log('I am ready.');
-
     chrome.browserAction.onClicked.addListener(function(tab) {
         console.log('click on tab: ' + tab.id);
         go_reading();
@@ -88,6 +78,7 @@ $(document).ready(function() {
             var tags = request.tags;
             subscribe(url, html, tags);
             console.log('jobs done~');
+            sendResponse({response: 'done'});
         });
     });
 }); 

@@ -1,4 +1,9 @@
 $(document).ready(function() { 
+    var img_url = chrome.extension.getURL("img/loading.gif");
+    var done_url = chrome.extension.getURL("img/done.png");
+    var loading = '<div id="loading-box"> <img height="24" width="24" src="' + img_url + '"> <div id="loading-text"> <span>Saving...</span> </div> </div>';
+    var loadind_done = '<div id="loading-box"> <img height="24" width="24" src="' + done_url + '"> <div id="loading-text"> <span>Done!</span> </div> </div>';
+
     //function remove_unseen_elem($html) {
         //console.log($html.find('body :hidden'));
         //$html.find('body :hidden').detach();
@@ -13,9 +18,12 @@ $(document).ready(function() {
         //remove_unseen_elem($html);
         remove_modal($html);
         //console.log($html.html());
+        $('body').append(loading);
         chrome.extension.sendRequest({"html": $html.html(), "url": document.URL, "tags": tags}, 
             function(response) {
                 console.log(response);
+                $('#loading-box').detach();
+                $('body').append(loadind_done);
             });
     };
 
