@@ -53,7 +53,7 @@ var go_reading = function() {
                 return;
             }
         }
-        var reading_url =  url_base + "/account/login/";
+        var reading_url =  url_base + "/articles/";
         chrome.tabs.create({url: reading_url});
     });
 };
